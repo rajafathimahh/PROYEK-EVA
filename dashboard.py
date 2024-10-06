@@ -114,12 +114,12 @@ st.markdown("""
 """)
 
 rfm_summary = pd.DataFrame({
-    "Recency_Casual": [30], 
-    "Frequency_Casual": [12345],
-    "Monetary_Casual": [123456],
-    "Recency_Registered": [15],
-    "Frequency_Registered": [23456],
-    "Monetary_Registered": [234567]
+    "Recency_Casual": [366], 
+    "Frequency_Casual": [620017],
+    "Monetary_Casual": [620017],
+    "Recency_Registered": [366],
+    "Frequency_Registered": [2672662],
+    "Monetary_Registered": [2672662]
 })
 
 st.dataframe(rfm_summary)
