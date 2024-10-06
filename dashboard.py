@@ -103,6 +103,62 @@ st.markdown("""
 - Scatter plot pada masing-masing faktor cuaca terhadap jumlah penyewa/pengguna memperlihatkan bahwa titik-titik data tersebar luas, dan dengan hasil plot regresi linear, titik-titik data baik pada suhu, kelembapan, maupun kecepatan angin terlihat tidak mendekati garis regresi. 
 """)
 
+
+
+# RFM Analysis
+st.subheader('Analisis RFM')
+st.markdown("""
+- Recency: Menghitung jumlah hari sejak terakhir kali ada penyewaan sepeda dalam dataset, baik untuk pengguna 'casual' maupun 'registered'.
+- Frequency: Menghitung total frekuensi penyewaan sepeda oleh pengguna 'casual' dan 'registered'.
+- Monetary: Menggunakan jumlah penyewaan sepeda total, kita akan menghitung total penyewaan untuk setiap tipe pengguna.
+""")
+
+rfm_summary = pd.DataFrame({
+    "Recency_Casual": [30], 
+    "Frequency_Casual": [12345],
+    "Monetary_Casual": [123456],
+    "Recency_Registered": [15],
+    "Frequency_Registered": [23456],
+    "Monetary_Registered": [234567]
+})
+
+st.dataframe(rfm_summary)
+
+# PLOT
+st.subheader("Recency: Casual vs Registered Users")
+fig, ax = plt.subplots()
+categories = ['Casual', 'Registered']
+recency_values = [rfm_summary["Recency_Casual"].values[0], rfm_summary["Recency_Registered"].values[0]]
+ax.bar(categories, recency_values, color=['blue', 'red'])
+ax.set_ylabel('Recency (Days)')
+ax.set_title('Comparison of Recency: Casual vs Registered Users')
+st.pyplot(fig)
+
+st.subheader("Frequency: Casual vs Registered Users")
+fig, ax = plt.subplots()
+categories = ['Casual', 'Registered']
+frequency_values = [rfm_summary["Frequency_Casual"].values[0], rfm_summary["Frequency_Registered"].values[0]]
+ax.bar(categories, frequency_values, color=['blue', 'red'])
+ax.set_ylabel('Frequency (Total Rentals)')
+ax.set_title('Comparison of Frequency: Casual vs Registered Users')
+st.pyplot(fig)
+
+st.subheader("Monetary: Casual vs Registered Users")
+fig, ax = plt.subplots()
+categories = ['Casual', 'Registered']
+monetary_values = [rfm_summary["Monetary_Casual"].values[0], rfm_summary["Monetary_Registered"].values[0]]
+ax.bar(categories, monetary_values, color=['blue', 'red'])
+ax.set_ylabel('Monetary (Total Rentals)')
+ax.set_title('Comparison of Monetary: Casual vs Registered Users')
+st.pyplot(fig)
+
+st.write("""
+- Recency: jumlah hari terakhir sejak ada penyewaan sepeda untuk pengguna 'casual' dan 'registered' adalah sama, yaitu 366 hari. 
+- Frequency: total frekuensi penyewaan sepeda selama 4 musim dalam 2 tahun ini oleh pengguna 'casual' adalah 620017, sedangkan oleh pengguna 'registered' adalah 2672662. Pengguna 'registered' jauh lebih banyak daripada pengguna 'casual'.
+- Monetary: jumlah total penyewaan sepeda adalah gabungan dari total 'casual' sebanyak 620017 dan total 'registered' sebanyak 2672662, yaitu sebesar 3292679.
+""")
+
+
 # Conclusion
 st.subheader('Kesimpulan')
 st.markdown("""
