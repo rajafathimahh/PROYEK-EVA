@@ -42,6 +42,12 @@ ax.set_xlabel("Season (1=Spring, 2=Summer, 3=Fall, 4=Winter)")
 ax.set_ylabel("Rata-rata Jumlah Pengguna")
 ax.legend(title="Tipe Pengguna")
 st.pyplot(fig) 
+st.markdown("""
+- Line chart di atas menunjukkan tren rata-rata penyewaan sepeda oleh pengguna 'casual' dan 'registered' selama 4 musim dalam 2 tahun, dari 2011-2012.
+- Pengguna 'casual' direpresentasikan oleh garis biru dan pengguna 'registered direpresentasikan oleh garis merah.
+- Terlihat bahwa rata-rata pengguna 'registered' selalu di atas pengguna 'casual' dan keduanya memiliki titik tertinggi di saat musim gugur atau 'fall', dan titik terendah saat musim semi atau 'spring.
+""")
+
 
 # Plot: BAR CHART 'Perbandingan Rerata Penggunaan Sepeda: Casual vs Registered Users di Setiap Musim'
 x = np.arange(len(seasonal_trend))
@@ -56,6 +62,11 @@ ax.set_xticklabels(seasonal_trend.index)
 ax.set_ylabel("Rata-rata Jumlah Pengguna")
 ax.legend(title="Tipe Pengguna")
 st.pyplot(fig)
+st.markdown("""
+- Bar chart di atas menunjukkan perbandingan rata-rata penyewaan sepeda oleh pengguna 'casual' dan 'registered' selama 4 musim dalam 2 tahun, dari 2011-2012. 
+- Pengguna 'casual' direpresentasikan oleh batang biru dan pengguna 'registered direpresentasikan oleh batang merah. 
+- Terlihat bahwa rata-rata pengguna 'registered' selalu di atas pengguna 'casual' dan keduanya memiliki nilai tertinggi di saat musim gugur atau 'fall', dan nilai terendah saat musim semi atau 'spring.
+""")
 
 # Filter interaktif kondisi cuaca 'weather'
 selected_weather = st.sidebar.selectbox('Pilih Kondisi Cuaca', data['weathersit'].unique())
@@ -88,17 +99,26 @@ sns.scatterplot(data=data, x='windspeed', y='cnt', ax=ax)
 sns.regplot(x='windspeed', y='cnt', data=day_df, line_kws={'color': 'red'}, ax=ax)
 ax.set_title('Kecepatan Angin vs Jumlah Penyewa Sepeda')
 st.pyplot(fig)
-
-
+st.markdown("""
+- Scatter plot pada masing-masing faktor cuaca terhadap jumlah penyewa/pengguna memperlihatkan bahwa titik-titik data tersebar luas, dan dengan hasil plot regresi linear, titik-titik data baik pada suhu, kelembapan, maupun kecepatan angin terlihat tidak mendekati garis regresi. 
+""")
 
 # Conclusion
 st.subheader('Kesimpulan')
 st.markdown("""
-- Pada musim semi (1), rata-rata pengguna 'casual' hanya sebesar 335, sedangkan pengguna 'registered' sebesar 2269 pengguna. Pada musim panas (2), rata-rata pengguna 'casual' sebesar 1106, sedangkan pengguna 'registered' sebesar 3886 pengguna. Pada musim gugur (3), rata-rata pengguna 'casual' sebesar 1203, sedangkan pengguna 'registered' sebesar 4442 pengguna. Terakhir, pada musim dingin (4), rata-rata pengguna 'casual' sebesar 729, sedangkan pengguna 'registered' sebesar 3999 pengguna.
-- Musim yang memiliki rata-rata pengguna tertinggi baik 'casual' maupun 'registered' adalah musim gugur.
+- Conclution pertanyaan 1: 
 
-- Pada saat akhir pekan (0), dengan suhu rata-rata 0.48, kelembapan rata-rata 0.62, dan kecepatan angin rata-rata 0.19, jumlah pengguna/penyewa sepeda total mencapai rata-rata sebesar 4330 pengguna.
-- Pada saat hari kerja (1), dengan suhu rata-rata 0.50, kelembapan rata-rata 0.63, dan kecepatan angin rata-rata 0.19, jumlah pengguna/penyewa sepeda total mencapai rata-rata sebesar 1878 pengguna.
-- Nilai rata-rata faktor cuaca seperti suhu, kelembapan, dan kecepatan angin tidak memiliki perbedaan yang cukup signifikan pada saat akhir pekan maupun hari kerja, sehingga tidak terlalu memengaruhi jumlah pengguna/penyewa sepeda secara total. 
-- Jumlah pengguna pada akhir pekan (4330) jauh lebih tinggi dibandingkan dengan hari kerja (1878). Meskipun faktor cuaca tidak menunjukkan perbedaan yang signifikan, hasil ini menunjukkan bahwa ada faktor lain yang mendorong lebih banyak orang untuk menggunakan sepeda pada akhir pekan. 
+Rata-rata jumlah penyewaan sepeda oleh pengguna 'casual' selalu lebih rendah daripada pengguna 'registered' selama 4 musim pada 2011-2012, dengan musim yang memiliki rata-rata pengguna tertinggi baik 'casual' maupun 'registered' adalah musim gugur, dan musim dengan rata-rata terendah adalah musim semi. Terlihat bahwa pengguna 'registered' lebih sering menyewa sepeda dibandingkan pengguna 'casual'. 
+
+Lebih jelasnya, pada musim semi (spring), rata-rata pengguna 'casual' hanya sebesar 335, sedangkan pengguna 'registered' sebesar 2269 pengguna. Pada musim panas (summer), rata-rata pengguna 'casual' sebesar 1106, sedangkan pengguna 'registered' sebesar 3886 pengguna. Pada musim gugur (fall), rata-rata pengguna 'casual' sebesar 1203, sedangkan pengguna 'registered' sebesar 4442 pengguna. Terakhir, pada musim dingin (winter), rata-rata pengguna 'casual' sebesar 729, sedangkan pengguna 'registered' sebesar 3999 pengguna.
+
+- Conclution pertanyaan 2: 
+
+Faktor cuaca seperti suhu, kelembapan, dan kecepatan angin ('tempt', 'hum', dan 'windspeed') terhadap jumlah total penyewaan sepeda baik pada hari kerja dan akhir pekan selama 2011-2012 memiliki pengaruh yang sangat kecil karena nilai rata-rata setiap faktor cuaca tersebut tidak memiliki perbedaan yang cukup signifikan pada saat akhir pekan maupun hari kerja. 
+
+Selain itu, jumlah pengguna pada akhir pekan sebanyak 4330, jauh lebih tinggi dibandingkan dengan hari kerja yang sebanyak 1878. Meskipun faktor cuaca tidak menunjukkan perbedaan yang signifikan, hasil ini menunjukkan bahwa ada faktor lain yang mendorong lebih banyak orang untuk menggunakan sepeda pada akhir pekan, seperti waktu luang pada hari libur.
+
+- Conclution RFM Analysis:
+
+Selain jawaban 2 pertanyaan bisnis, juga dilakukan analisis lanjutan dengan teknik RFM Analysis. Diperoleh hasil bahwa pengguna 'registered' cenderung berkontribusi lebih banyak dibandingkan pengguna 'casual' dalam hal frekuensi dan jumlah penyewaan sepeda dengan total sewa 2672662 banding 620017, serta jumlah hari terakhir sejak penyewaan sepeda untuk keduanya adalah 366 hari. 
 """)
